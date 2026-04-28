@@ -31,13 +31,3 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
 }
-
-@keyframes shine {
-  100% {
-    left: 125%;
-  }
-}
-
-.animate-shine {
-  animation: shine 1.5s ease-in-out infinite;
-}
