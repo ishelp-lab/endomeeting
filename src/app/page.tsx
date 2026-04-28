@@ -30,17 +30,17 @@ export default function Home() {
       />
 
       {/* INTRO SECTION */}
-      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-neutral-950">
         {/* Background Image with opacity */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/endodontics_background_abstract_1777405732790.png" 
+            src="/intro-dark.png" 
             alt="Endomeeting Background" 
             fill
-            className="object-cover opacity-20 scale-105"
+            className="object-cover opacity-40 scale-105"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-neutral-950" />
         </div>
 
         <motion.div 
@@ -49,21 +49,21 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.5 }}
           className="relative z-10 flex flex-col items-center text-center px-6"
         >
-          <div className="w-20 h-1 bg-brand-900 mb-8 rounded-full" />
-          <h1 className="text-4xl md:text-6xl font-black text-neutral-900 tracking-tighter mb-4">
-            4º ENDO<span className="text-brand-900">MEETING</span>
+          <div className="w-20 h-1 bg-brand-600 mb-8 rounded-full" />
+          <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter mb-4 drop-shadow-2xl">
+            4º ENDO<span className="text-brand-500">MEETING</span>
           </h1>
-          <p className="text-xl md:text-2xl text-neutral-500 font-medium tracking-widest uppercase mb-12">
+          <p className="text-xl md:text-2xl text-neutral-400 font-medium tracking-[0.2em] uppercase mb-12">
             Triângulo Mineiro • 2027
           </p>
           
           <motion.div 
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-neutral-400"
+            className="flex flex-col items-center gap-2 text-neutral-500"
           >
             <span className="text-sm font-bold uppercase tracking-[0.3em]">Role para entrar</span>
-            <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-300 to-transparent" />
+            <div className="w-[1px] h-12 bg-gradient-to-b from-brand-600 to-transparent" />
           </motion.div>
         </motion.div>
       </section>
