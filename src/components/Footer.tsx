@@ -4,7 +4,9 @@ export function Footer() {
       <div className="container mx-auto px-6 py-16">
         <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-4">
           <div className="md:col-span-1 lg:col-span-2">
-            <img src="/images/logo-2.png" alt="Endomeeting Logo" className="h-16 w-auto mb-6" />
+            <h3 className="text-2xl font-black tracking-tighter text-white mb-4">
+              Endomeeting<span className="text-brand-500">TM</span>
+            </h3>
             <p className="mb-6 max-w-sm text-neutral-400 leading-relaxed">
               O maior evento para endodontistas do Triângulo Mineiro. Venha vivenciar a endodontia com sucesso e excelência em resultados.
             </p>

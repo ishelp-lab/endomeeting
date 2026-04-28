@@ -11,7 +11,11 @@
   "dependencies": {
     "framer-motion": "^11.18.2",
     "lucide-react": "^1.12.0",
+<<<<<<< HEAD
+    "next": "^15.1.7",
+=======
     "next": "15.1.11",
+>>>>>>> a34dc932d6ebe1da1e57f87562e37e617d0b66d0
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

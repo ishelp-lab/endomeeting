@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { PaymentPopup } from "@/components/PaymentPopup";
 import { Sponsors } from "@/components/Sponsors";
 import { speakers } from "@/data/speakers";
 import { MapPin, Calendar, CheckCircle2, ChevronRight, User, Stethoscope, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
-export function HomePage() {
+export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // O link do Kiwify atualizado (pode ser ajustado conforme a necessidade)

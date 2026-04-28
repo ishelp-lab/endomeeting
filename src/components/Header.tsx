@@ -32,7 +32,10 @@ export function Header() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <img src="/images/logo-1.png" alt="Endomeeting Logo" className="h-12 w-auto drop-shadow-sm" />
+          {/* PLACEHOLDER LOGO */}
+          <div className="text-2xl font-black tracking-tighter text-brand-900">
+            Endomeeting<span className="text-brand-500">TM</span>
+          </div>
         </a>
 
         {/* Desktop Nav */}
