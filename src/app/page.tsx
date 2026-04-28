@@ -29,82 +29,126 @@ export default function Home() {
         checkoutUrl={kiwifyCheckoutUrl} 
       />
 
-      {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
-        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      {/* INTRO SECTION */}
+      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Background Image with opacity */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/endodontics_background_abstract_1777405732790.png" 
+            alt="Endomeeting Background" 
+            fill
+            className="object-cover opacity-20 scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="relative z-10 flex flex-col items-center text-center px-6"
+        >
+          <div className="w-20 h-1 bg-brand-900 mb-8 rounded-full" />
+          <h1 className="text-4xl md:text-6xl font-black text-neutral-900 tracking-tighter mb-4">
+            4º ENDO<span className="text-brand-900">MEETING</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-neutral-500 font-medium tracking-widest uppercase mb-12">
+            Triângulo Mineiro • 2027
+          </p>
+          
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 text-neutral-400"
+          >
+            <span className="text-sm font-bold uppercase tracking-[0.3em]">Role para entrar</span>
+            <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-300 to-transparent" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* HERO & VIDEO SECTION */}
+      <section id="hero" className="relative w-full min-h-screen flex items-center justify-center py-24 overflow-hidden bg-white/50 backdrop-blur-sm border-t border-neutral-100">
+        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="flex flex-col items-start text-left"
           >
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 font-medium text-sm mb-6 border border-brand-100/50 backdrop-blur-sm"
-            >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 font-medium text-sm mb-6 border border-brand-100/50">
               <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-              O Maior Evento de Endodontia do Triângulo Mineiro
-            </motion.div>
-            <h1 className="text-5xl md:text-8xl font-black text-neutral-900 tracking-tight leading-[0.9] mb-6">
-              4º Endo<br/>
-              <span className="text-brand-900 drop-shadow-sm">meeting</span>
-            </h1>
-            <p className="text-lg md:text-xl text-neutral-600 mb-8 max-w-xl leading-relaxed">
-              Vivencie a endodontia com sucesso e excelência. Renove conhecimentos e conecte-se com especialistas no Center Convention.
+              Inscrições Abertas - Lote de Pré-venda
+            </div>
+            <h2 className="text-5xl md:text-8xl font-black text-neutral-900 tracking-tight leading-[0.9] mb-8">
+              A Excelência<br/>
+              <span className="text-brand-900">Redefinida</span>
+            </h2>
+            <p className="text-lg md:text-xl text-neutral-600 mb-10 max-w-xl leading-relaxed">
+              O evento que reúne os maiores especialistas em endodontia do Brasil para dois dias de imersão tecnológica e científica.
             </p>
             
-            <div className="flex flex-wrap gap-6 mb-10">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-white shadow-sm border border-neutral-100 rounded-2xl text-brand-600">
-                  <Calendar className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-semibold text-neutral-900">1 e 2 de Maio</p>
-                  <p className="text-sm text-neutral-500 font-medium tracking-wide">2027</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-white shadow-sm border border-neutral-100 rounded-2xl text-brand-600">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-semibold text-neutral-900">Center Convention</p>
-                  <p className="text-sm text-neutral-500 font-medium tracking-wide">Uberlândia - MG</p>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setIsPopupOpen(true)}
+                className="flex items-center justify-center gap-3 px-10 py-5 bg-brand-900 text-white rounded-2xl text-lg font-bold shadow-2xl shadow-brand-900/40"
+              >
+                Garantir Ingresso
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+              
+              <button className="flex items-center justify-center gap-3 px-10 py-5 bg-white text-neutral-900 border border-neutral-200 rounded-2xl text-lg font-bold hover:bg-neutral-50 transition-colors">
+                <span className="w-8 h-8 flex items-center justify-center bg-brand-50 rounded-full text-brand-600">
+                  <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-current border-b-[5px] border-b-transparent ml-1" />
+                </span>
+                Ver Teaser
+              </button>
             </div>
-
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setIsPopupOpen(true)}
-              className="group relative flex items-center justify-center gap-3 px-10 py-5 bg-brand-900 text-white rounded-2xl text-lg font-bold overflow-hidden shadow-2xl shadow-brand-900/40 w-full sm:w-auto"
-            >
-              <span className="relative z-10">Garantir Minha Vaga</span>
-              <ChevronRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-800 to-brand-950 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
-            </motion.button>
           </motion.div>
 
-          {/* Hero Image/Graphic */}
+          {/* Video / Visual Placeholder */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full aspect-square"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative w-full aspect-video rounded-[3rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] border-8 border-white group"
           >
-            <div className="absolute inset-0 bg-brand-900/5 rounded-[4rem] -rotate-6 blur-2xl" />
-            <div className="absolute inset-0 bg-white rounded-[4rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-neutral-100 flex items-center justify-center group">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-transparent" />
-              <Stethoscope className="w-32 h-32 text-brand-900/10 group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute bottom-10 left-10 right-10 p-6 glass rounded-3xl">
-                <p className="text-sm font-bold text-brand-900 uppercase tracking-widest mb-1">Destaque 2027</p>
-                <p className="text-neutral-600 font-medium">+500 Congressistas Esperados</p>
+            <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
+              {/* NOTE: Replace with real video embed later */}
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                  <div className="w-0 h-0 border-t-[15px] border-t-transparent border-l-[25px] border-l-white border-b-[15px] border-b-transparent ml-2" />
+                </div>
+                <span className="text-white/60 font-bold uppercase tracking-widest text-sm">Assista ao Vídeo de 2026</span>
               </div>
             </div>
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
           </motion.div>
+        </div>
+      </section>
+
+      {/* INFO STRIP */}
+      <section className="w-full py-12 bg-neutral-900 text-white overflow-hidden">
+        <div className="container mx-auto px-6 flex flex-wrap justify-between gap-8 md:gap-12">
+          {[
+            { icon: <Calendar className="w-5 h-5" />, label: "DATA", val: "01 e 02 de Maio, 2027" },
+            { icon: <MapPin className="w-5 h-5" />, label: "LOCAL", val: "Center Convention, Uberlândia" },
+            { icon: <User className="w-5 h-5" />, label: "PÚBLICO", val: "CDs e Acadêmicos" }
+          ].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-4">
+              <div className="text-brand-500">{item.icon}</div>
+              <div>
+                <p className="text-[10px] font-black tracking-[0.2em] text-neutral-500">{item.label}</p>
+                <p className="text-sm font-bold">{item.val}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

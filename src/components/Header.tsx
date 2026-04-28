@@ -5,12 +5,16 @@ import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Header() {
+  const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Show header only after scrolling past 80% of the first fold
+      const threshold = window.innerHeight * 0.8;
+      setIsVisible(window.scrollY > threshold);
+      setIsScrolled(window.scrollY > window.innerHeight + 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -19,15 +23,20 @@ export function Header() {
   const navLinks = [
     { name: "Sobre", href: "#sobre" },
     { name: "Palestrantes", href: "#palestrantes" },
-    { name: "Cronograma", href: "#cronograma" },
     { name: "Ingressos", href: "#ingressos" },
     { name: "Localização", href: "#localizacao" },
   ];
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ 
+        y: isVisible ? 0 : -100, 
+        opacity: isVisible ? 1 : 0 
+      }}
+      transition={{ duration: 0.5, ease: "circOut" }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        isScrolled ? "bg-white/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3 border-b border-white/20" : "bg-transparent py-6"
+        isScrolled ? "bg-white/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3 border-b border-white/20" : "bg-white/40 backdrop-blur-md py-5"
       }`}
     >
       {/* Scroll Progress Bar */}
@@ -107,6 +116,6 @@ export function Header() {
           </div>
         </motion.div>
       )}
-    </header>
+    </motion.header>
   );
 }
