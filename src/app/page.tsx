@@ -17,6 +17,12 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center">
+      {/* BACKGROUND DECORATIONS - GLOBAL LIGHTING */}
+      <div className="fixed inset-0 pointer-events-none -z-50 overflow-hidden">
+        <div className="absolute top-[10%] -left-[10%] w-[40vw] h-[40vw] bg-brand-200/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[20%] -right-[10%] w-[35vw] h-[35vw] bg-brand-100/10 rounded-full blur-[100px] animate-float" />
+      </div>
+
       <PaymentPopup 
         isOpen={isPopupOpen} 
         onClose={() => setIsPopupOpen(false)} 
@@ -24,120 +30,159 @@ export default function Home() {
       />
 
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden bg-white">
-        {/* Abstract Background Element */}
-        <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-brand-50 rounded-bl-full -z-10 opacity-60 blur-3xl" />
-        
+      <section className="relative w-full min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-start text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 font-medium text-sm mb-6 border border-brand-100">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 font-medium text-sm mb-6 border border-brand-100/50 backdrop-blur-sm"
+            >
               <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
               O Maior Evento de Endodontia do Triângulo Mineiro
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black text-neutral-900 tracking-tight leading-tight mb-6">
-              4º Endomeeting<br/>
-              <span className="text-brand-900">TM 2027</span>
+            </motion.div>
+            <h1 className="text-5xl md:text-8xl font-black text-neutral-900 tracking-tight leading-[0.9] mb-6">
+              4º Endo<br/>
+              <span className="text-brand-900 drop-shadow-sm">meeting</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-600 mb-8 max-w-xl leading-relaxed">
-              Vivencie a endodontia com sucesso e excelência. Renove conhecimentos, conecte-se com especialistas e acesse as últimas inovações da tecnologia endodôntica.
+              Vivencie a endodontia com sucesso e excelência. Renove conhecimentos e conecte-se com especialistas no Center Convention.
             </p>
             
             <div className="flex flex-wrap gap-6 mb-10">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-neutral-100 rounded-xl text-brand-600">
+                <div className="p-3 bg-white shadow-sm border border-neutral-100 rounded-2xl text-brand-600">
                   <Calendar className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900">1 e 2 de Maio</p>
-                  <p className="text-sm text-neutral-500">2027</p>
+                  <p className="text-sm text-neutral-500 font-medium tracking-wide">2027</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-neutral-100 rounded-xl text-brand-600">
+                <div className="p-3 bg-white shadow-sm border border-neutral-100 rounded-2xl text-brand-600">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900">Center Convention</p>
-                  <p className="text-sm text-neutral-500">Uberlândia - MG</p>
+                  <p className="text-sm text-neutral-500 font-medium tracking-wide">Uberlândia - MG</p>
                 </div>
               </div>
             </div>
 
-            <button 
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setIsPopupOpen(true)}
-              className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-brand-900 text-white rounded-2xl text-lg font-bold overflow-hidden shadow-xl shadow-brand-900/30 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              className="group relative flex items-center justify-center gap-3 px-10 py-5 bg-brand-900 text-white rounded-2xl text-lg font-bold overflow-hidden shadow-2xl shadow-brand-900/40 w-full sm:w-auto"
             >
               <span className="relative z-10">Garantir Minha Vaga</span>
               <ChevronRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-brand-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0" />
-            </button>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-800 to-brand-950 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
+            </motion.button>
           </motion.div>
 
           {/* Hero Image/Graphic */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square"
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full aspect-square"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-brand-900 to-brand-600 rounded-[3rem] rotate-3 opacity-10" />
-            <div className="absolute inset-0 bg-neutral-100 rounded-[3rem] overflow-hidden shadow-2xl border border-white/50 flex items-center justify-center">
-              <Stethoscope className="w-32 h-32 text-neutral-300" />
-              {/* NOTE: Add event photo here later */}
+            <div className="absolute inset-0 bg-brand-900/5 rounded-[4rem] -rotate-6 blur-2xl" />
+            <div className="absolute inset-0 bg-white rounded-[4rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-neutral-100 flex items-center justify-center group">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-50/50 to-transparent" />
+              <Stethoscope className="w-32 h-32 text-brand-900/10 group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute bottom-10 left-10 right-10 p-6 glass rounded-3xl">
+                <p className="text-sm font-bold text-brand-900 uppercase tracking-widest mb-1">Destaque 2027</p>
+                <p className="text-neutral-600 font-medium">+500 Congressistas Esperados</p>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="sobre" className="w-full py-24 bg-neutral-50">
+      <section id="sobre" className="w-full py-32 bg-white relative">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-6 tracking-tight">Excelência em Foco</h2>
-            <p className="text-lg text-neutral-600 mb-10 leading-relaxed">
-              Organizado pela <strong>Equipe Rodrigo Faria de Endodontia</strong>, o Endomeeting é uma oportunidade única para você aprimorar os conhecimentos e técnicas com os melhores e mais renomados palestrantes do Brasil.
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-black text-neutral-900 mb-8 tracking-tight leading-tight">Excelência em <span className="text-brand-900">Foco</span></h2>
+            <p className="text-xl text-neutral-500 mb-10 leading-relaxed font-medium">
+              Organizado pela Equipe Rodrigo Faria de Endodontia, o Endomeeting é o epicentro da inovação endodôntica no Brasil.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
+          <div className="grid md:grid-cols-3 gap-8 mt-20">
             {[
-              { title: "Alta Tecnologia", desc: "Acesso às mais recentes inovações tecnológicas da área." },
-              { title: "Networking", desc: "Conexões valiosas com outros profissionais e feira comercial." },
-              { title: "Hands-on", desc: "Vivencie na prática equipamentos e protocolos clínicos." }
+              { title: "Alta Tecnologia", desc: "Acesso às mais recentes inovações e microscopia de ponta.", icon: <CheckCircle2 className="w-6 h-6" /> },
+              { title: "Networking Elite", desc: "Conexões valiosas com os maiores nomes da endodontia nacional.", icon: <User className="w-6 h-6" /> },
+              { title: "Imersão Prática", desc: "Vivencie protocolos clínicos reais com hands-on especializados.", icon: <Stethoscope className="w-6 h-6" /> }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow">
-                <CheckCircle2 className="w-10 h-10 text-brand-600 mb-6" />
-                <h3 className="text-xl font-bold text-neutral-900 mb-3">{item.title}</h3>
-                <p className="text-neutral-600">{item.desc}</p>
-              </div>
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="bg-neutral-50 p-10 rounded-[2.5rem] border border-neutral-100 hover:border-brand-200/50 hover:bg-white hover:shadow-2xl hover:shadow-brand-900/5 transition-all duration-500 group"
+              >
+                <div className="w-14 h-14 bg-white shadow-sm border border-neutral-100 rounded-2xl flex items-center justify-center text-brand-600 mb-8 group-hover:bg-brand-900 group-hover:text-white transition-colors duration-500">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-4">{item.title}</h3>
+                <p className="text-neutral-500 leading-relaxed font-medium">{item.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* SPEAKERS SECTION */}
-      <section id="palestrantes" className="w-full py-24 bg-white">
+      <section id="palestrantes" className="w-full py-32 bg-neutral-50/50">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-4 tracking-tight">Palestrantes Renomados</h2>
-            <p className="text-neutral-600 max-w-2xl text-lg">Aprenda com professores experientes que aliam alta tecnologia e resultados de excelência na prática clínica.</p>
+          <div className="flex flex-col items-center mb-20 text-center">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-black text-neutral-900 mb-6 tracking-tight"
+            >
+              Mestres da Endodontia
+            </motion.h2>
+            <p className="text-neutral-500 max-w-2xl text-xl font-medium">Conheça os especialistas que estão transformando a endodontia clínica.</p>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {speakers.map((speaker, index) => (
-              <div key={index} className="group bg-neutral-50 rounded-3xl p-6 border border-neutral-100 hover:border-brand-200 transition-colors flex flex-col items-center text-center">
-                <div className="w-24 h-24 rounded-full bg-neutral-200 mb-5 overflow-hidden flex items-center justify-center relative">
-                  <User className="w-10 h-10 text-neutral-400" />
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
+                className="group bg-white rounded-[2rem] p-8 border border-neutral-100 hover:border-brand-200 hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center"
+              >
+                <div className="w-32 h-32 rounded-3xl bg-neutral-100 mb-6 overflow-hidden flex items-center justify-center relative group-hover:scale-105 transition-transform duration-500">
+                  <User className="w-12 h-12 text-neutral-300" />
+                  <div className="absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/10 transition-colors duration-500" />
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">{speaker.name}</h3>
-                <h4 className="text-sm font-semibold text-brand-700 mb-3">{speaker.title}</h4>
-                <p className="text-xs text-neutral-500 leading-relaxed">{speaker.description}</p>
-              </div>
+                <h3 className="text-xl font-bold text-neutral-900 mb-2">{speaker.name}</h3>
+                <h4 className="text-sm font-bold text-brand-700 mb-4 tracking-wider uppercase">{speaker.title}</h4>
+                <p className="text-sm text-neutral-500 leading-relaxed font-medium line-clamp-3">{speaker.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>

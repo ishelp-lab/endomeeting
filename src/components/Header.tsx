@@ -26,26 +26,36 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        isScrolled ? "bg-white/70 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3 border-b border-white/20" : "bg-transparent py-6"
       }`}
     >
+      {/* Scroll Progress Bar */}
+      {isScrolled && (
+        <motion.div 
+          className="absolute bottom-0 left-0 h-[2px] bg-brand-900"
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 0.3 }}
+        />
+      )}
+
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
+        <a href="#" className="flex items-center gap-2 group">
           {/* PLACEHOLDER LOGO */}
-          <div className="text-2xl font-black tracking-tighter text-brand-900">
-            Endomeeting<span className="text-brand-500">TM</span>
+          <div className="text-2xl font-black tracking-tighter text-neutral-900 group-hover:text-brand-900 transition-colors">
+            Endo<span className="text-brand-900">meeting</span><span className="text-brand-500 font-bold ml-1">2027</span>
           </div>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-brand-600 ${
-                isScrolled ? "text-neutral-600" : "text-neutral-800"
+              className={`text-sm font-bold tracking-tight transition-all hover:text-brand-900 hover:scale-105 ${
+                isScrolled ? "text-neutral-500" : "text-neutral-800"
               }`}
             >
               {link.name}
@@ -53,7 +63,7 @@ export function Header() {
           ))}
           <a
             href="#ingressos"
-            className="rounded-full bg-brand-900 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-900/30 hover:bg-brand-800 transition-all hover:scale-105"
+            className="rounded-2xl bg-brand-900 px-8 py-3 text-sm font-bold text-white shadow-2xl shadow-brand-900/40 hover:bg-brand-950 transition-all hover:scale-105 active:scale-95"
           >
             Garantir Vaga
           </a>
