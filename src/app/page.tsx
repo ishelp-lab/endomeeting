@@ -7,6 +7,8 @@ import { speakers } from "@/data/speakers";
 import { MapPin, Calendar, CheckCircle2, ChevronRight, User, Stethoscope } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { Sponsors } from "@/components/Sponsors";
+
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -96,7 +98,7 @@ export default function Home() {
       <section id="sobre" className="w-full py-24 bg-neutral-50">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-6">Excelência em Foco</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-6 tracking-tight">Excelência em Foco</h2>
             <p className="text-lg text-neutral-600 mb-10 leading-relaxed">
               Organizado pela <strong>Equipe Rodrigo Faria de Endodontia</strong>, o Endomeeting é uma oportunidade única para você aprimorar os conhecimentos e técnicas com os melhores e mais renomados palestrantes do Brasil.
             </p>
@@ -122,7 +124,7 @@ export default function Home() {
       <section id="palestrantes" className="w-full py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-4">Palestrantes Renomados</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-4 tracking-tight">Palestrantes Renomados</h2>
             <p className="text-neutral-600 max-w-2xl text-lg">Aprenda com professores experientes que aliam alta tecnologia e resultados de excelência na prática clínica.</p>
           </div>
           
@@ -151,7 +153,7 @@ export default function Home() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Garanta sua Vaga</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Garanta sua Vaga</h2>
             <p className="text-brand-100 max-w-2xl mx-auto text-lg">Lotes limitados. Quanto antes você garantir, mais você economiza!</p>
           </div>
 
@@ -229,12 +231,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PATROCINADORES */}
+      <Sponsors />
+
       {/* LOCATION SECTION */}
-      <section id="localizacao" className="w-full py-24 bg-white">
+      <section id="localizacao" className="w-full py-24 bg-neutral-50 border-t border-neutral-100">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-6">Local do Evento</h2>
+              <h2 className="text-3xl md:text-5xl font-black text-neutral-900 mb-6 tracking-tight">Local do Evento</h2>
               <div className="flex items-start gap-4 mb-8">
                 <div className="p-3 bg-brand-50 rounded-xl text-brand-600 mt-1">
                   <MapPin className="w-6 h-6" />
@@ -248,24 +253,24 @@ export default function Home() {
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-neutral-900 mb-4 mt-12">Hospedagem Recomendada</h3>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4 mt-12 tracking-tight">Hospedagem Recomendada</h3>
               <div className="space-y-4">
-                <div className="p-4 border border-neutral-100 rounded-2xl">
+                <div className="p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm">
                   <h4 className="font-bold text-neutral-900">Mercure Uberlândia Plaza Shopping</h4>
                   <p className="text-sm text-neutral-500">Opção oficial do evento (anexo ao Center Convention).</p>
                 </div>
-                <div className="p-4 border border-neutral-100 rounded-2xl">
+                <div className="p-4 bg-white border border-neutral-100 rounded-2xl shadow-sm">
                   <h4 className="font-bold text-neutral-900">Ibis Uberlândia</h4>
                   <p className="text-sm text-neutral-500">Avenida João Naves de Ávila, 1590 A</p>
                 </div>
               </div>
             </div>
             
-            <div className="bg-neutral-100 rounded-[2rem] overflow-hidden aspect-square md:aspect-video lg:aspect-square relative">
+            <div className="bg-white border border-neutral-100 rounded-[2rem] overflow-hidden aspect-square md:aspect-video lg:aspect-square relative shadow-lg">
               {/* Placeholder for Map / Local Photo */}
-              <div className="absolute inset-0 flex items-center justify-center text-neutral-400 flex-col gap-4">
+              <div className="absolute inset-0 flex items-center justify-center text-neutral-300 flex-col gap-4">
                 <MapPin className="w-16 h-16 opacity-50" />
-                <span className="font-medium">Mapa Interativo</span>
+                <span className="font-medium text-neutral-400">Mapa Interativo</span>
               </div>
             </div>
           </div>
