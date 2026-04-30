@@ -10,6 +10,34 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentLot, setCurrentLot] = useState<1 | 2>(1);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Data de virada de lote: 02 de maio de 2026 às 08:00 (Horário de Brasília)
+    const switchDate = new Date('2026-05-02T08:00:00-03:00');
+    if (new Date() >= switchDate) {
+      setCurrentLot(2);
+    }
+  }, []);
+
+  const lotData = {
+    1: {
+      label: "Lançamento",
+      students: "250,00",
+      partners: "350,00",
+      dentists: "550,00"
+    },
+    2: {
+      label: "1º Lote",
+      students: "300,00",
+      partners: "400,00",
+      dentists: "600,00"
+    }
+  };
+
+  const prices = mounted ? lotData[currentLot] : lotData[1];
 
   // O link do Kiwify atualizado (pode ser ajustado conforme a necessidade)
   const kiwifyCheckoutUrl = "https://pay.kiwify.com.br/xxxxx";
@@ -62,7 +90,7 @@ export default function Home() {
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-neutral-900 text-sm">1 e 2 de Maio</p>
+                  <p className="font-semibold text-neutral-900 text-sm">30/04 e 01/05</p>
                   <p className="text-xs text-neutral-500">2027</p>
                 </div>
               </div>
@@ -208,7 +236,7 @@ export default function Home() {
             <p className="text-brand-200/80 max-w-2xl mx-auto text-lg">Lotes limitados. Quanto antes você garantir, mais você economiza!</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Categoria 1 */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -217,17 +245,17 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-8 border border-white/10 flex flex-col hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
             >
-              <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">Pré-venda</div>
+              <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">{prices.label}</div>
               <h3 className="text-xl font-bold text-white mb-2">Graduação e Pós</h3>
-              <p className="text-neutral-400 text-sm mb-6 pb-6 border-b border-white/10">Alunos matriculados</p>
+              <p className="text-neutral-400 text-sm mb-6 pb-6 border-b border-white/10">Alunos de graduação e pós-graduação</p>
               
               <div className="mb-8">
-                <span className="text-sm text-neutral-400 block mb-1">Por até 4x de</span>
+                <span className="text-sm text-neutral-400 block mb-1">Apenas</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
-                  <span className="text-4xl font-black text-white">102,07</span>
+                  <span className="text-5xl font-black text-white">{prices.students}</span>
                 </div>
-                <span className="text-sm text-brand-400/80 font-medium block mt-2">À vista R$ 375,00</span>
+                <span className="text-sm text-brand-400/80 font-medium block mt-2">Em até 12x no cartão</span>
               </div>
               
               <button 
@@ -249,17 +277,17 @@ export default function Home() {
               <div className="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">MAIS POPULAR</div>
               <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shine" />
               
-              <div className="mb-4 text-xs font-bold text-brand-300 tracking-wider uppercase relative z-10">Pré-venda</div>
-              <h3 className="text-2xl font-bold text-white mb-2 relative z-10">Ex-Alunos & Parceiros</h3>
-              <p className="text-brand-200/60 text-sm mb-6 pb-6 border-b border-brand-700/50 relative z-10">Cooperados e grupos de estudo</p>
+              <div className="mb-4 text-xs font-bold text-brand-300 tracking-wider uppercase relative z-10">{prices.label}</div>
+              <h3 className="text-xl font-bold text-white mb-2 relative z-10">Ex-alunos & Parceiros</h3>
+              <p className="text-brand-200/60 text-xs mb-6 pb-6 border-b border-brand-700/50 relative z-10 min-h-[60px]">Ex-alunos Equipe Rodrigo Faria, UNIODONTO e Grupo de Estudos Patrícia Ferrari, associados SBEndo</p>
               
               <div className="mb-8 relative z-10">
-                <span className="text-sm text-brand-200/80 block mb-1">Por até 4x de</span>
+                <span className="text-sm text-brand-200/80 block mb-1">Apenas</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
-                  <span className="text-5xl font-black text-white drop-shadow-md">122,49</span>
+                  <span className="text-6xl font-black text-white drop-shadow-md">{prices.partners}</span>
                 </div>
-                <span className="text-sm text-brand-300 font-medium block mt-2">À vista R$ 450,00</span>
+                <span className="text-sm text-brand-300 font-medium block mt-2">Em até 12x no cartão</span>
               </div>
               
               <button 
@@ -278,17 +306,17 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-8 border border-white/10 flex flex-col hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
             >
-              <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">Pré-venda</div>
-              <h3 className="text-xl font-bold text-white mb-2">Cirurgiões Dentistas</h3>
+              <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">{prices.label}</div>
+              <h3 className="text-xl font-bold text-white mb-2">Cirurgiões-dentistas</h3>
               <p className="text-neutral-400 text-sm mb-6 pb-6 border-b border-white/10">Profissionais formados</p>
               
               <div className="mb-8">
-                <span className="text-sm text-neutral-400 block mb-1">Por até 4x de</span>
+                <span className="text-sm text-neutral-400 block mb-1">Apenas</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
-                  <span className="text-4xl font-black text-white">176,92</span>
+                  <span className="text-5xl font-black text-white">{prices.dentists}</span>
                 </div>
-                <span className="text-sm text-brand-400/80 font-medium block mt-2">À vista R$ 650,00</span>
+                <span className="text-sm text-brand-400/80 font-medium block mt-2">Em até 12x no cartão</span>
               </div>
               
               <button 
