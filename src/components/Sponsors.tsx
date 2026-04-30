@@ -30,7 +30,7 @@ export function Sponsors() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-20 max-w-6xl mx-auto">
+        <div className="flex flex-col gap-24 max-w-6xl mx-auto">
           {/* Ouro */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -38,16 +38,16 @@ export function Sponsors() {
             viewport={{ once: true }}
             className="flex flex-col items-center"
           >
-            <h3 className="text-sm font-bold text-amber-500 tracking-[0.3em] uppercase mb-10 bg-amber-50 px-6 py-2 rounded-full">Cota Ouro</h3>
-            <div className="flex flex-wrap justify-center gap-10">
+            <h3 className="text-sm font-bold text-amber-500 tracking-[0.3em] uppercase mb-12 bg-amber-50 px-6 py-2 rounded-full">Cota Ouro</h3>
+            <div className="flex flex-wrap justify-center gap-12">
               {sponsors.ouro.map((src, i) => (
                 <motion.div 
                   key={i} 
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="w-48 h-24 md:w-56 md:h-28 bg-white rounded-[2rem] border border-neutral-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 hover:shadow-xl hover:border-amber-200 group relative overflow-hidden"
+                  className="w-64 h-32 md:w-80 md:h-40 bg-white rounded-[2.5rem] border border-neutral-100 shadow-[0_15px_40px_rgba(0,0,0,0.04)] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 hover:shadow-2xl hover:border-amber-200 group relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-tr from-amber-50/0 to-amber-50/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-neutral-400 font-bold text-sm tracking-tight">Logo Ouro</span>
+                  <span className="text-neutral-400 font-bold text-base tracking-tight">Logo Ouro</span>
                 </motion.div>
               ))}
             </div>
@@ -61,21 +61,21 @@ export function Sponsors() {
             className="flex flex-col items-center"
           >
             <h3 className="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mb-10 bg-slate-50 px-6 py-2 rounded-full">Cota Prata</h3>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-10">
               {sponsors.prata.map((src, i) => (
                 <motion.div 
                   key={i} 
                   whileHover={{ y: -5 }}
-                  className="w-36 h-20 md:w-44 md:h-24 bg-white rounded-2xl border border-neutral-100 shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 hover:shadow-lg hover:border-slate-200 group"
+                  className="w-48 h-24 md:w-64 md:h-32 bg-white rounded-3xl border border-neutral-100 shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 hover:shadow-xl hover:border-slate-200 group"
                 >
-                  <span className="text-neutral-400 font-bold text-xs tracking-tight">Logo Prata</span>
+                  <span className="text-neutral-400 font-bold text-sm tracking-tight">Logo Prata</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Bronze & Apoiadores */}
-          <div className="grid md:grid-cols-2 gap-16 mt-4">
+          <div className="grid md:grid-cols-2 gap-20 mt-4">
             {/* Bronze */}
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
@@ -83,15 +83,15 @@ export function Sponsors() {
               viewport={{ once: true }}
               className="flex flex-col items-center"
             >
-              <h3 className="text-xs font-bold text-amber-800/60 tracking-[0.3em] uppercase mb-8">Cota Bronze</h3>
-              <div className="flex flex-wrap justify-center gap-6">
+              <h3 className="text-xs font-bold text-amber-800/60 tracking-[0.3em] uppercase mb-10">Cota Bronze</h3>
+              <div className="flex flex-wrap justify-center gap-8">
                 {sponsors.bronze.map((src, i) => (
                   <motion.div 
                     key={i} 
                     whileHover={{ scale: 1.05 }}
-                    className="w-28 h-14 md:w-32 md:h-16 bg-white rounded-xl border border-neutral-100 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 shadow-sm"
+                    className="w-36 h-18 md:w-44 md:h-22 bg-white rounded-2xl border border-neutral-100 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 shadow-sm"
                   >
-                    <span className="text-neutral-400 text-[10px] font-bold">Logo Bronze</span>
+                    <span className="text-neutral-400 text-xs font-bold">Logo Bronze</span>
                   </motion.div>
                 ))}
               </div>
@@ -104,15 +104,15 @@ export function Sponsors() {
               viewport={{ once: true }}
               className="flex flex-col items-center"
             >
-              <h3 className="text-xs font-bold text-neutral-400 tracking-[0.3em] uppercase mb-8">Apoiadores</h3>
-              <div className="flex flex-wrap justify-center gap-6">
+              <h3 className="text-xs font-bold text-neutral-400 tracking-[0.3em] uppercase mb-10">Apoiadores</h3>
+              <div className="flex flex-wrap justify-center gap-8">
                 {sponsors.apoiadores.map((src, i) => (
                   <motion.div 
                     key={i} 
                     whileHover={{ scale: 1.05 }}
-                    className="w-24 h-12 bg-neutral-50/50 rounded-lg border border-neutral-100 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500"
+                    className="w-32 h-16 bg-neutral-50/50 rounded-xl border border-neutral-100 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500"
                   >
-                    <span className="text-neutral-400 text-[9px] font-bold">Apoio</span>
+                    <span className="text-neutral-400 text-[11px] font-bold">Apoio</span>
                   </motion.div>
                 ))}
               </div>
