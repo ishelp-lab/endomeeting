@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,10 +52,14 @@ export function Header() {
 
       <div className="container mx-auto px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          {/* PLACEHOLDER LOGO */}
-          <div className="text-2xl font-black tracking-tighter text-neutral-900 group-hover:text-brand-900 transition-colors">
-            Endo<span className="text-brand-900">meeting</span><span className="text-brand-500 font-bold ml-1">2027</span>
-          </div>
+          <Image 
+            src="/logo.png.png" 
+            alt="Endomeeting Logo" 
+            width={180} 
+            height={50} 
+            className="h-10 w-auto transition-transform group-hover:scale-105"
+            priority
+          />
         </a>
 
         {/* Desktop Nav */}

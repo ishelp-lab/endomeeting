@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { X, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -48,7 +47,7 @@ export function PaymentPopup({ isOpen, onClose, checkoutUrl, title, message }: P
                 </h3>
                 
                 <p className="mb-6 text-sm text-neutral-600">
-                  {message || "Você está sendo redirecionado para a plataforma de pagamentos (Kiwify). Os ingressos são limitados e os lotes podem esgotar rapidamente. Tem certeza que deseja continuar?"}
+                  {message || "Você está sendo redirecionado para a plataforma de pagamentos (Kiwify)."}
                 </p>
                 
                 <div className="flex w-full flex-col gap-3 sm:flex-row">
@@ -65,7 +64,7 @@ export function PaymentPopup({ isOpen, onClose, checkoutUrl, title, message }: P
                     className="flex-1 rounded-xl bg-brand-900 px-4 py-3 text-sm font-semibold text-white shadow-md hover:bg-brand-800 transition-colors"
                     onClick={onClose}
                   >
-                    Continuar para Pagamento
+                    Continuar
                   </a>
                 </div>
               </div>

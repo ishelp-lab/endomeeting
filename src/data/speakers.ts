@@ -1,80 +1,72 @@
-export const speakers = [
+export interface Speaker {
+  name: string;
+  title: string;
+  description: string;
+  fullBio?: string;
+  image?: string;
+  video?: string;
+  socials?: {
+    instagram?: string;
+    website?: string;
+  };
+  isInternational?: boolean;
+  isComingSoon?: boolean;
+}
+
+export const speakers: Speaker[] = [
   {
-    name: "Dr. Iussif Mamede",
-    title: "Tomomicrosonic: A Nova Arquitetura da Endodontia Moderna",
-    description: "Graduado em Odontologia (UFG), com especialização, mestrado e doutorado. Coordenador da equipe EndoConcept e da EndoKids.",
-    image: "/placeholder-speaker.webp"
+    name: "Prof. Dr. Rui Pereira da Costa",
+    title: "Convidado Internacional • Portugal/Irlanda",
+    description: "Diretor do Instituto Português de Endodontia e Professor na Universidade de Lisboa e Barcelona.",
+    fullBio: "Licenciado pela Faculdade de Medicina Dentária da Universidade do Porto. Mestre em Endodontia pela Universitat Internacional de Catalunya - Barcelona. Doutor em Ciências (Endodontia) pela Faculdade de Odontologia de Ribeirão Preto da USP. Fellow do International College of Dentists. Professor Associado no Curso de Especialização em Endodontia e nas disciplinas de Endodontia da Faculdade de Medicina Dentária da Universidade de Lisboa. Professor no Mestrado em Endodontia na Universitat Internacional de Catalunya - Barcelona. Professor convidado na Pós-Graduação em Endodontia da CESPU – Porto. Autor de diversos artigos científicos em revistas nacionais e internacionais na área da Endodontia. Palestrante em congressos nacionais e internacionais, incluindo Espanha, Itália, Brasil, Chile, Argentina, Colômbia, Uruguai, Angola, Dubai, Bahrein, Líbano, Itália, Hungria, etc. Coordenador dos cursos de formação pós-graduada em Endodontia RPCendo. Diretor do Instituto Português de Endodontia. Prática exclusiva em Endodontia em Portugal e na Irlanda.",
+    isInternational: true,
+    image: "/images/img-rui.jpeg",
+    video: "/videos/video-rui.mp4"
   },
   {
-    name: "Dra. Patrícia Ferrari",
-    title: "Cemental Tear: Os Desafios do Diagnóstico e as Dificuldades do Tratamento",
-    description: "Doutora em Endodontia pela FOUSP. Vencedora do Prêmio Ápice em Endodontia (2022); coordena o Instituto PF de Ensino em Endodontia.",
-    image: "/placeholder-speaker.webp"
+    name: "Profª. Dra. Patrícia Ferrari",
+    title: "A Infecção Endodôntica e Sua Resolução",
+    description: "Doutora em Endodontia pela FOUSP e vencedora do Prêmio Ápice em Endodontia (2022).",
+    fullBio: "Cirurgiã-dentista com atuação exclusiva em Endodontia. Graduada, mestre e doutora pela FOUSP e especialista pela APCD, coordena o Instituto PF de Ensino em Endodontia e é autora do livro 'A Infecção Endodôntica e Sua Resolução'. Na clínica privada, alia diagnóstico preciso, tratamento e retratamento com protocolos claros e baseados em evidência, priorizando conforto, segurança e previsibilidade. Em sala, transforma ciência em prática com foco em planejamento, controle da dor, desinfecção e modelagem de canais, além de retratamentos e casos complexos. Vencedora do Prêmio Ápice em Endodontia (2022).",
+    socials: {
+      instagram: "https://www.instagram.com/profpatferrari/",
+      website: "https://patriciaferrariendodontia.com.br/"
+    },
+    image: "/images/img-patricia.webp",
+    video: "/videos/video-patricia.mp4"
   },
   {
-    name: "Dr. André Martins",
-    title: "Glidepath: O Conflito Entre Anatomia e Protocolo",
-    description: "CEO e fundador da NEWTEC, atua no desenvolvimento de sistemas e instrumentos endodônticos integrando conhecimento clínico e engenharia.",
-    image: "/placeholder-speaker.webp"
+    name: "Prof. Dr. Mário Zuolo",
+    title: "Excelência e Prática Clínica em Endodontia",
+    description: "Doutor pela FOP/UNICAMP e autor de referências bibliográficas fundamentais na Endodontia.",
+    fullBio: "Cirurgião Dentista formado pela Faculdade de Odontologia de Ribeirão Preto – USP em 1981. Especialista em Endodontia pela APCD. Preceptorship Endodontic Course at UHSC - San Antonio (Texas) – USA. Teaching Fellow in Endodontics at University of Iowa – College of Dentistry. Mestre em Biologia Molecular pela UNIFESP – Escola Paulista de Medicina. Doutor em Clínica Odontológica – Endodontia na FOP / UNICAMP. Professor de Endodontia da FAOA – APCD. Autor dos livros: 'Endodontia para o Clínico Geral', 'Reintervenção em Endodontia' e 'Remoção de Pinos: Protocolos Clínicos'. Conferencista nacional e internacional. Autor de inúmeros artigos sobre Endodontia publicados em revistas nacionais e internacionais. Consultório particular limitado à prática de Endodontia na cidade de São Paulo há 35 anos.",
+    image: "/images/img-mario-zuolo.jpeg",
+    video: "/videos/video-mario-zuolo.mp4"
   },
   {
-    name: "Dra. Kênia Toubes",
-    title: "Dentes Fragilizados: A Sinergia Endo-restauração",
-    description: "Doutora em Clínicas Odontológicas pela PUC Minas. Mais de 36 anos de experiência clínica dedicada à Endodontia.",
-    image: "/placeholder-speaker.webp"
+    name: "Prof. Dr. Carlos Eduardo Bueno",
+    title: "Autor do Livro 'Excelência em Endodontia Clínica'",
+    description: "Mestre e Doutor pela FOP-UNICAMP. Coordenador de Especialização e Mestrado na SLMandic.",
+    fullBio: "Especialista, Mestre e Doutor em Endodontia pela F.O.P.-UNICAMP. Pós-Doutor pela F.O.P.-UNICAMP. Coordenador dos cursos de Especialização e Mestrado em Endodontia da SLMandic Campinas. Coordenador dos cursos de Especialização em Endodontia da SLMandic de Vitória e São Paulo. Professor do Programa de Pós-Graduação da SLMandic nível Doutorado. Autor do livro 'Excelência em Endodontia Clínica'.",
+    image: "/images/img-bueno.jpeg",
+    video: "/videos/video-carlos-eduardo.mp4"
   },
   {
-    name: "Dr. Marco Versiani",
-    title: "Desvendando a Complexidade Anatômica Através de Casos Clínicos",
-    description: "Referência internacional em Endodontia, autor de 4 livros e 200+ artigos. Conselheiro do International Endodontic Journal.",
-    image: "/placeholder-speaker.webp"
+    name: "Em Breve",
+    title: "Palestrante Surpresa",
+    description: "Aguarde o anúncio de mais um grande nome da Endodontia.",
+    isComingSoon: true
   },
   {
-    name: "Dra. Maristela Lobo",
-    title: "Tratamento Multidisciplinar das Lesões Endo-periódontais",
-    description: "Doutora em Odontologia pela FOP/Unicamp, com residência em Implantes em Harvard (EUA).",
-    image: "/placeholder-speaker.webp"
+    name: "Em Breve",
+    title: "Palestrante Surpresa",
+    description: "Aguarde o anúncio de mais um grande nome da Endodontia.",
+    isComingSoon: true
   },
   {
-    name: "Dr. Thiago Carneiro",
-    title: "Odontologia Digital na Prática Clínica",
-    description: "Referência em Odontologia Digital com sólida formação acadêmica e experiência internacional em pesquisa nos EUA.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dr. Henrique Bassi",
-    title: "Patência Mecanizada Reciprocante com Instrumento de Aço",
-    description: "Fundador da Easy Equipamentos Odontológicos, consolidada como marca 100% brasileira de excelência.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dr. Carlos Soares & Dra. Priscilla Soares",
-    title: "Traumatismos em Dentes Permanentes",
-    description: "Pesquisadores e referências da UFU em Serviço de Traumatismo Dento-alveolar.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dra. Vanessa Defelícibus",
-    title: "Intercorrências Faciais",
-    description: "Referência internacional no tratamento de intercorrências faciais e criadora da técnica Escultura Labial®️.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dr. Ângelo Freire",
-    title: "Como Iniciar e Como Concluir o Tratamento Endodôntico",
-    description: "Coordenador Científico e Professor do Inmagni – Centro Avançado de Endodontia com Microscopia.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dr. Alexandre Capelli & Dr. Bruno Crozeta",
-    title: "Ultrassom Piezelétrico de Alta Confiabilidade",
-    description: "Referência em inovação, desenvolvimento de instrumentos e retratamento endodôntico.",
-    image: "/placeholder-speaker.webp"
-  },
-  {
-    name: "Dr. Paulo Vinícius Soares",
-    title: "Odontologia do Estilo de Vida e o Novo Mercado Odontológico",
-    description: "Referência científica internacional em Dentística, Reabilitação Oral e Estética. Fundador do Instituto IPV.",
-    image: "/placeholder-speaker.webp"
+    name: "Em Breve",
+    title: "Palestrante Surpresa",
+    description: "Aguarde o anúncio de mais um grande nome da Endodontia.",
+    isComingSoon: true
   }
 ];
