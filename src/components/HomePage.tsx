@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PaymentPopup } from "@/components/PaymentPopup";
 import { Sponsors } from "@/components/Sponsors";
 import { speakers } from "@/data/speakers";
-import { MapPin, Calendar, CheckCircle2, ChevronRight, User, Stethoscope, Sparkles } from "lucide-react";
+import { MapPin, Calendar, CheckCircle2, ChevronRight, User, Stethoscope, Sparkles, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupContent, setPopupContent] = useState<{title: string, message: string, url: string} | undefined>(undefined);
   const [currentLot, setCurrentLot] = useState<1 | 2>(1);
   const [mounted, setMounted] = useState(false);
 
@@ -21,6 +22,15 @@ export default function Home() {
       setCurrentLot(2);
     }
   }, []);
+
+  const handleOpenPopup = (title: string, audience: string, url: string) => {
+    setPopupContent({
+      title: `Ingresso: ${title}`,
+      message: `Atenção: Este ingresso é destinado exclusivamente para ${audience}. Será necessário comprovar sua categoria no credenciamento do evento. Caso não haja comprovação, será cobrada a diferença para o valor do ingresso integral no local. Deseja prosseguir?`,
+      url: url
+    });
+    setIsPopupOpen(true);
+  };
 
   const lotData = {
     1: {
@@ -52,7 +62,9 @@ export default function Home() {
       <PaymentPopup 
         isOpen={isPopupOpen} 
         onClose={() => setIsPopupOpen(false)} 
-        checkoutUrl={kiwifyCheckoutUrl} 
+        checkoutUrl={popupContent?.url || ""} 
+        title={popupContent?.title}
+        message={popupContent?.message}
       />
 
       {/* HERO SECTION */}
@@ -230,14 +242,18 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeIn}
-            className="text-center mb-20"
+            className="text-center mb-12"
           >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider mb-4 border border-brand-500/30">
+              Oferta Especial
+            </div>
             <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Garanta sua Vaga</h2>
-            <p className="text-brand-200/80 max-w-2xl mx-auto text-lg">Lotes limitados. Quanto antes você garantir, mais você economiza!</p>
+            <p className="text-brand-200/80 max-w-2xl mx-auto text-lg mb-2">Lotes limitados para o 4º Endomeeting.</p>
+            <p className="text-yellow-500 font-bold">Valores de lançamento: Apenas para dias 01/05 e 02/05/26 durante o evento.</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Categoria 1 */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+            {/* Categoria 1: Estudantes */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -246,11 +262,19 @@ export default function Home() {
               className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-8 border border-white/10 flex flex-col hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
             >
               <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">{prices.label}</div>
-              <h3 className="text-xl font-bold text-white mb-2">Graduação e Pós</h3>
-              <p className="text-neutral-400 text-sm mb-6 pb-6 border-b border-white/10">Alunos de graduação e pós-graduação</p>
+              <h3 className="text-xl font-bold text-white mb-4">Graduação e Pós</h3>
+              <div className="space-y-3 mb-8 pb-6 border-b border-white/10 flex-grow">
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  Destinado exclusivamente para <strong className="text-white">estudantes de graduação ou pós-graduação</strong> em Odontologia.
+                </p>
+                <div className="flex items-start gap-2 text-xs text-neutral-400">
+                  <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+                  <span>Necessário comprovação de matrícula ativa.</span>
+                </div>
+              </div>
               
               <div className="mb-8">
-                <span className="text-sm text-neutral-400 block mb-1">Apenas</span>
+                <span className="text-sm text-neutral-400 block mb-1">Investimento</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
                   <span className="text-5xl font-black text-white">{prices.students}</span>
@@ -259,46 +283,51 @@ export default function Home() {
               </div>
               
               <button 
-                onClick={() => setIsPopupOpen(true)}
-                className="mt-auto w-full py-4 rounded-xl font-bold text-brand-900 bg-white hover:scale-[1.02] transition-all duration-300"
+                onClick={() => handleOpenPopup("Graduação e Pós", "estudantes de graduação e pós-graduação", "https://pay.kiwify.com.br/rrtPxfL")}
+                className="w-full py-4 rounded-xl font-bold text-brand-900 bg-white hover:bg-brand-50 hover:scale-[1.02] transition-all duration-300"
               >
                 Comprar Agora
               </button>
             </motion.div>
 
-            {/* Categoria 2 - Destaque */}
+            {/* Categoria 2: Parceiros */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-b from-brand-900/80 to-brand-950 backdrop-blur-xl rounded-[2rem] p-8 border border-brand-500/30 flex flex-col transform md:-translate-y-8 relative overflow-hidden shadow-[0_0_50px_rgba(153,27,27,0.4)] group"
+              className="bg-gradient-to-b from-brand-900/40 to-brand-950/80 backdrop-blur-xl rounded-[2rem] p-8 border border-brand-500/30 flex flex-col relative overflow-hidden group shadow-2xl"
             >
-              <div className="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">MAIS POPULAR</div>
-              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shine" />
+              <div className="mb-4 text-xs font-bold text-brand-300 tracking-wider uppercase">{prices.label}</div>
+              <h3 className="text-xl font-bold text-white mb-4">Ex-alunos & Parceiros</h3>
+              <div className="space-y-3 mb-8 pb-6 border-b border-brand-700/50 flex-grow">
+                <p className="text-brand-100 text-sm leading-relaxed">
+                  Para <strong className="text-white">Ex-alunos Equipe Rodrigo Faria, UNIODONTO, Grupo Patrícia Ferrari e Associados SBEndo.</strong>
+                </p>
+                <div className="flex items-start gap-2 text-xs text-brand-300/70">
+                  <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+                  <span>Válido para membros ativos das instituições citadas.</span>
+                </div>
+              </div>
               
-              <div className="mb-4 text-xs font-bold text-brand-300 tracking-wider uppercase relative z-10">{prices.label}</div>
-              <h3 className="text-xl font-bold text-white mb-2 relative z-10">Ex-alunos & Parceiros</h3>
-              <p className="text-brand-200/60 text-xs mb-6 pb-6 border-b border-brand-700/50 relative z-10 min-h-[60px]">Ex-alunos Equipe Rodrigo Faria, UNIODONTO e Grupo de Estudos Patrícia Ferrari, associados SBEndo</p>
-              
-              <div className="mb-8 relative z-10">
-                <span className="text-sm text-brand-200/80 block mb-1">Apenas</span>
+              <div className="mb-8">
+                <span className="text-sm text-brand-200/80 block mb-1">Investimento</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
-                  <span className="text-6xl font-black text-white drop-shadow-md">{prices.partners}</span>
+                  <span className="text-5xl font-black text-white">{prices.partners}</span>
                 </div>
                 <span className="text-sm text-brand-300 font-medium block mt-2">Em até 12x no cartão</span>
               </div>
               
               <button 
-                onClick={() => setIsPopupOpen(true)}
-                className="mt-auto w-full py-4 rounded-xl font-bold text-brand-950 bg-gradient-to-r from-white to-brand-50 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 relative z-10"
+                onClick={() => handleOpenPopup("Ex-alunos & Parceiros", "ex-alunos Equipe Rodrigo Faria, cooperados UNIODONTO, membros do Grupo de Estudos Patrícia Ferrari e associados SBEndo", "https://pay.kiwify.com.br/sQSX4he")}
+                className="w-full py-4 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-500 hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-brand-900/50"
               >
                 Comprar Agora
               </button>
             </motion.div>
 
-            {/* Categoria 3 */}
+            {/* Categoria 3: Dentistas */}
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -307,11 +336,19 @@ export default function Home() {
               className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-8 border border-white/10 flex flex-col hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
             >
               <div className="mb-4 text-xs font-bold text-brand-400 tracking-wider uppercase">{prices.label}</div>
-              <h3 className="text-xl font-bold text-white mb-2">Cirurgiões-dentistas</h3>
-              <p className="text-neutral-400 text-sm mb-6 pb-6 border-b border-white/10">Profissionais formados</p>
+              <h3 className="text-xl font-bold text-white mb-4">Cirurgiões-dentistas</h3>
+              <div className="space-y-3 mb-8 pb-6 border-b border-white/10 flex-grow">
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  Destinado a <strong className="text-white">Cirurgiões-dentistas formados</strong> que buscam atualização e excelência clínica.
+                </p>
+                <div className="flex items-start gap-2 text-xs text-neutral-400">
+                  <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+                  <span>Acesso completo a todas as palestras e feira comercial.</span>
+                </div>
+              </div>
               
               <div className="mb-8">
-                <span className="text-sm text-neutral-400 block mb-1">Apenas</span>
+                <span className="text-sm text-neutral-400 block mb-1">Investimento</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-white">R$</span>
                   <span className="text-5xl font-black text-white">{prices.dentists}</span>
@@ -320,13 +357,35 @@ export default function Home() {
               </div>
               
               <button 
-                onClick={() => setIsPopupOpen(true)}
-                className="mt-auto w-full py-4 rounded-xl font-bold text-brand-900 bg-white hover:scale-[1.02] transition-all duration-300"
+                onClick={() => handleOpenPopup("Cirurgiões-dentistas", "profissionais formados em Odontologia", "https://pay.kiwify.com.br/7HjGskz")}
+                className="w-full py-4 rounded-xl font-bold text-brand-900 bg-white hover:bg-brand-50 hover:scale-[1.02] transition-all duration-300"
               >
                 Comprar Agora
               </button>
             </motion.div>
           </div>
+
+          {/* Policy Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto bg-brand-900/20 border border-brand-500/20 rounded-3xl p-8 backdrop-blur-md"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-brand-500/20 rounded-lg">
+                <AlertCircle className="w-6 h-6 text-brand-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-white mb-2">Política de Inscrição e Responsabilidade</h4>
+                <p className="text-brand-100/70 text-sm leading-relaxed">
+                  Ao adquirir seu ingresso, o participante assume a responsabilidade de garantir que sua categoria profissional condiz com o ingresso selecionado. 
+                  <strong className="text-white"> É obrigatória a comprovação da categoria no momento do credenciamento.</strong> 
+                  Caso não seja apresentada a documentação comprobatória, será cobrada a diferença de valor para o ingresso integral vigente no dia do evento para a liberação da credencial.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

@@ -8,9 +8,11 @@ interface PaymentPopupProps {
   isOpen: boolean;
   onClose: () => void;
   checkoutUrl: string;
+  title?: string;
+  message?: string;
 }
 
-export function PaymentPopup({ isOpen, onClose, checkoutUrl }: PaymentPopupProps) {
+export function PaymentPopup({ isOpen, onClose, checkoutUrl, title, message }: PaymentPopupProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -42,13 +44,11 @@ export function PaymentPopup({ isOpen, onClose, checkoutUrl }: PaymentPopupProps
                 </div>
                 
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">
-                  Aviso Importante
+                  {title || "Aviso Importante"}
                 </h3>
                 
                 <p className="mb-6 text-sm text-neutral-600">
-                  Você está sendo redirecionado para a plataforma de pagamentos (Kiwify). 
-                  Os ingressos são limitados e os lotes podem esgotar rapidamente. 
-                  Tem certeza que deseja continuar?
+                  {message || "Você está sendo redirecionado para a plataforma de pagamentos (Kiwify). Os ingressos são limitados e os lotes podem esgotar rapidamente. Tem certeza que deseja continuar?"}
                 </p>
                 
                 <div className="flex w-full flex-col gap-3 sm:flex-row">
